@@ -35,6 +35,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return emojis.count
     }
     
+    
+    
     // function that declares whats in each cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -47,6 +49,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.textLabel?.text = emojis[indexPath.row]
         
         return cell
+    }
+
+    
+    // function to move to second screen
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
+        
+        // perform segue
+        performSegue(withIdentifier: "moveSegue", sender: "🏈")
     }
 
     override func didReceiveMemoryWarning() {
