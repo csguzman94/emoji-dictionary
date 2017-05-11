@@ -55,8 +55,23 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     // function to move to second screen
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         
+        // deselects the row when returning the main view controller
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        //creates a constant from the array that will be passed as the sender in performSegue
+        let emoji = emojis[indexPath.row]
+        
         // perform segue
-        performSegue(withIdentifier: "moveSegue", sender: "🏈")
+        performSegue(withIdentifier: "moveSegue", sender: emoji)
+    }
+    
+    // function gets run right before the segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        // hold the view controller for DefinitionViewController
+        let defVC = segue.destination as! DefinitionViewController
+        
+        defVC.emoji = sender as! String
     }
 
     override func didReceiveMemoryWarning() {
